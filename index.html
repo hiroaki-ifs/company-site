@@ -1,0 +1,708 @@
+<title>Skyline Technologies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: dark;
+    --bg-deep: #0a1120;
+    --bg-panel: #101a2c;
+    --bg-panel-2: #172440;
+    --border: #24324c;
+    --sky-top: #141d38;
+    --sky-mid: #2c2a55;
+    --sky-horizon: #ff9a56;
+    --silhouette: #070c17;
+    --text-primary: #eef1f8;
+    --text-secondary: #97a3c0;
+    --text-faint: #5c6a8a;
+    --accent: #ff8f4d;
+    --accent-soft: rgba(255,143,77,0.14);
+    --accent-2: #57e2c6;
+    --accent-2-soft: rgba(87,226,198,0.14);
+    --font-display: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+    --font-body: "Noto Sans JP", "Hiragino Sans", sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3{
+    font-family: var(--font-display);
+    text-wrap: balance;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+  p{ margin:0; }
+  a{ color: inherit; }
+  ::selection{ background: var(--accent-soft); color: var(--text-primary); }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding-inline: 24px;
+  }
+  section{ padding-block: 88px; }
+  @media (max-width: 720px){ section{ padding-block: 56px; } }
+
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before{
+    content: "";
+    width: 22px; height: 1px;
+    background: var(--accent-2);
+    display: inline-block;
+  }
+
+  /* header */
+  header{
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 50;
+    background: rgba(10,17,32,0.78);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 17px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .brand svg{ width: 26px; height: 26px; flex-shrink: 0; }
+  .navlinks{
+    display: flex;
+    gap: 28px;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+  .navlinks a{ text-decoration: none; transition: color .15s ease; }
+  .navlinks a:hover, .navlinks a:focus-visible{ color: var(--text-primary); }
+  @media (max-width: 640px){ .navlinks{ display: none; } }
+
+  .btn{
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13.5px;
+    padding: 11px 20px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .btn:focus-visible{ outline: 2px solid var(--accent-2); outline-offset: 2px; }
+  .btn-primary{ background: var(--accent); color: #1a0e05; }
+  .btn-primary:hover{ transform: translateY(-1px); background: #ffa268; }
+  .btn-ghost{ border-color: var(--border); color: var(--text-primary); background: transparent; }
+  .btn-ghost:hover{ border-color: var(--accent-2); color: var(--accent-2); transform: translateY(-1px); }
+
+  /* hero */
+  .hero{
+    position: relative;
+    overflow: hidden;
+    padding-top: 72px;
+    padding-bottom: 0;
+    background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 46%, var(--sky-horizon) 88%, var(--bg-deep) 100%);
+  }
+  .hero-inner{
+    position: relative;
+    z-index: 3;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 56px 24px 0;
+  }
+  .hero h1{
+    font-size: clamp(34px, 5.4vw, 58px);
+    font-weight: 900;
+    line-height: 1.28;
+    max-width: 680px;
+    margin-top: 20px;
+  }
+  .hero p.lead{
+    margin-top: 22px;
+    max-width: 560px;
+    font-size: 16px;
+    color: #cfd6ea;
+  }
+  .hero-ctas{
+    margin-top: 34px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .skyline{
+    position: relative;
+    width: 100%;
+    height: clamp(180px, 32vw, 340px);
+    margin-top: 56px;
+  }
+  .skyline svg{ width: 100%; height: 100%; display: block; }
+
+  @keyframes twinkle{
+    0%, 100% { opacity: var(--wmin, 0.25); }
+    50% { opacity: var(--wmax, 0.95); }
+  }
+
+  /* stats */
+  .stats{
+    background: var(--bg-panel);
+    border-block: 1px solid var(--border);
+  }
+  .stats .wrap{
+    padding-block: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 720px){ .stats .wrap{ grid-template-columns: repeat(2,1fr); } }
+  .stat-num{
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .stat-label{
+    margin-top: 6px;
+    font-size: 12.5px;
+    color: var(--text-secondary);
+  }
+
+  /* section headers */
+  .section-head{
+    max-width: 640px;
+    margin-bottom: 48px;
+  }
+  .section-head h2{
+    font-size: clamp(26px, 3.4vw, 36px);
+    font-weight: 900;
+    margin-top: 16px;
+  }
+  .section-head p{
+    margin-top: 14px;
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+
+  /* product cards */
+  .cards{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 720px){ .cards{ grid-template-columns: 1fr; } }
+  .card{
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: border-color .18s ease, transform .18s ease;
+  }
+  .card:hover{ border-color: var(--accent-2); transform: translateY(-2px); }
+  .card-icon{
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--accent-2-soft);
+    color: var(--accent-2);
+    flex-shrink: 0;
+  }
+  .card-icon svg{ width: 20px; height: 20px; }
+  .card h3{ font-size: 18px; font-weight: 700; }
+  .card .tag{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+  }
+  .card p{ color: var(--text-secondary); font-size: 14px; }
+
+  /* pipeline */
+  .pipeline{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 14px;
+    align-items: stretch;
+  }
+  @media (max-width: 760px){
+    .pipeline{ grid-template-columns: 1fr; }
+    .pipeline .arrow{ transform: rotate(90deg); margin-block: -4px; }
+  }
+  .pipe-step{
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 26px 22px;
+  }
+  .pipe-step .num{
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+  .pipe-step h3{ font-size: 18px; margin-top: 10px; }
+  .pipe-step p{ margin-top: 10px; color: var(--text-secondary); font-size: 13.5px; }
+  .arrow{
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-faint);
+  }
+
+  /* testimonial */
+  .testimonial{
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 44px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  @media (max-width: 720px){ .testimonial{ grid-template-columns: 1fr; padding: 30px; } }
+  .testimonial blockquote{
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(19px, 2.4vw, 25px);
+    line-height: 1.6;
+  }
+  .testimonial cite{
+    display: block;
+    margin-top: 18px;
+    font-style: normal;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+  .testimonial .quote-mark{
+    font-family: var(--font-display);
+    font-size: 64px;
+    color: var(--accent);
+    line-height: 1;
+    opacity: 0.5;
+  }
+  .logos{
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .logo-chip{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 16px;
+  }
+
+  /* careers */
+  .careers-box{
+    background: linear-gradient(135deg, var(--bg-panel-2), var(--bg-panel));
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 44px;
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .careers-box h2{ font-size: clamp(22px,3vw,30px); max-width: 420px; }
+  .roles{ display: flex; flex-direction: column; gap: 10px; min-width: 220px; }
+  .role-row{
+    display: flex; justify-content: space-between; gap: 16px;
+    font-size: 13.5px;
+    padding-block: 8px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  .role-row span:first-child{ color: var(--text-primary); }
+
+  /* contact / footer */
+  footer{
+    border-top: 1px solid var(--border);
+    background: var(--bg-panel);
+  }
+  .foot-grid{
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 32px;
+    padding-block: 56px 32px;
+  }
+  @media (max-width: 720px){ .foot-grid{ grid-template-columns: 1fr; } }
+  .foot-grid h4{
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 14px;
+  }
+  .foot-grid .brand{ margin-bottom: 14px; }
+  .foot-grid p, .foot-grid .row{ color: var(--text-secondary); font-size: 13.5px; }
+  .copy-row{
+    display: flex; align-items: center; gap: 8px; margin-top: 6px;
+    font-family: var(--font-mono); font-size: 13px; color: var(--text-primary);
+  }
+  .copy-btn{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent-2);
+    background: var(--accent-2-soft);
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    cursor: pointer;
+  }
+  .copy-btn:hover{ background: rgba(87,226,198,0.24); }
+  .foot-bottom{
+    border-top: 1px solid var(--border);
+    padding-block: 20px;
+    font-size: 12px;
+    color: var(--text-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M2 19L6 9L10 14L14 5L18 12L22 19H2Z" fill="var(--accent)" opacity="0.9"/></svg>
+      Skyline Technologies
+    </div>
+    <nav class="navlinks">
+      <a href="#product">プロダクト</a>
+      <a href="#how">仕組み</a>
+      <a href="#cases">導入事例</a>
+      <a href="#careers">採用情報</a>
+    </nav>
+    <a href="#contact" class="btn btn-ghost" style="padding:9px 18px;font-size:13px;">お問い合わせ</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">CLOUD OBSERVABILITY PLATFORM</span>
+    <h1>地平線の先まで、<br>システムを見晴らす。</h1>
+    <p class="lead">スカイライン・テクノロジーズは、分散システムの可観測性とインシデント対応を自動化するプラットフォームです。数万台規模のインフラを、稜線を望むように一目で捉えます。</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-primary">資料をダウンロード</a>
+      <a href="#contact" class="btn btn-ghost">導入のご相談</a>
+    </div>
+  </div>
+  <div class="skyline">
+    <svg id="skylineSvg" viewBox="0 0 1440 380" preserveAspectRatio="xMaxYMax slice" aria-hidden="true">
+      <g id="buildings"></g>
+      <g id="windows"></g>
+    </svg>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div>
+      <div class="stat-num">99.99%</div>
+      <div class="stat-label">サービス稼働率(SLA)</div>
+    </div>
+    <div>
+      <div class="stat-num">128,000+</div>
+      <div class="stat-label">監視対象ノード数</div>
+    </div>
+    <div>
+      <div class="stat-num">340社</div>
+      <div class="stat-label">導入企業数</div>
+    </div>
+    <div>
+      <div class="stat-num">67%</div>
+      <div class="stat-label">平均MTTR削減率</div>
+    </div>
+  </div>
+</div>
+
+<section id="product">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">PLATFORM</span>
+      <h2>監視・自動修復・ガバナンスを、<br>ひとつの基盤で。</h2>
+      <p>4つのモジュールが連携し、検知から復旧までのリードタイムを短縮します。</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/></svg></div>
+        <span class="tag">Horizon Observability</span>
+        <h3>可観測性</h3>
+        <p>分散トレーシング・メトリクス・ログを単一の時系列に統合し、障害の予兆をミリ秒単位で捕捉します。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M4.5 15a8 8 0 0014.5 3.4M19.5 9A8 8 0 005 5.6"/></svg></div>
+        <span class="tag">Horizon AutoOps</span>
+        <h3>自動修復</h3>
+        <p>プレイブックに基づき、検知から復旧までを自動実行。深夜のオンコール対応工数を大幅に削減します。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4Z"/></svg></div>
+        <span class="tag">Horizon Shield</span>
+        <h3>セキュリティ&ガバナンス</h3>
+        <p>ゼロトラストのアクセス制御と改ざん耐性のある監査ログで、金融・医療業界の要件にも対応します。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3v18M5 5l14 14M19 5L5 19"/></svg></div>
+        <span class="tag">Horizon Fabric</span>
+        <h3>マルチクラウド接続</h3>
+        <p>AWS・Azure・GCP、オンプレミスを横断する単一のコントロールプレーンで環境差分を吸収します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how" style="background:var(--bg-panel);border-block:1px solid var(--border);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">HOW IT WORKS</span>
+      <h2>3ステップで、検知から復旧まで。</h2>
+      <p>収集したシグナルを解析し、しきい値ではなく因果関係から異常を判断します。</p>
+    </div>
+    <div class="pipeline">
+      <div class="pipe-step">
+        <div class="num">01 / COLLECT</div>
+        <h3>収集</h3>
+        <p>エージェントとeBPFにより、アプリ・ネットワーク・インフラのシグナルをオーバーヘッドなく収集します。</p>
+      </div>
+      <div class="arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="pipe-step">
+        <div class="num">02 / ANALYZE</div>
+        <h3>分析</h3>
+        <p>依存関係グラフと異常検知モデルにより、根本原因を平均40秒で特定します。</p>
+      </div>
+      <div class="arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="pipe-step">
+        <div class="num">03 / ACT</div>
+        <h3>実行</h3>
+        <p>承認済みプレイブックを自動実行、または担当者へエスカレーションして復旧を最短化します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">CUSTOMER STORY</span>
+      <h2>導入企業の声</h2>
+    </div>
+    <div class="testimonial">
+      <div>
+        <span class="quote-mark">"</span>
+        <blockquote>導入から3ヶ月で、深夜のアラート対応工数を80%削減できました。オンコール担当の負担が明らかに減っています。</blockquote>
+        <cite>株式会社フジミ物流 SRE部門 部長 高橋 誠 氏</cite>
+      </div>
+    </div>
+    <div class="logos">
+      <span class="logo-chip">株式会社フジミ物流</span>
+      <span class="logo-chip">トウカイ銀行</span>
+      <span class="logo-chip">ミナト保険</span>
+      <span class="logo-chip">ハヤテ商事</span>
+      <span class="logo-chip">クルミ製薬</span>
+    </div>
+  </div>
+</section>
+
+<section id="careers">
+  <div class="wrap">
+    <div class="careers-box">
+      <div>
+        <span class="eyebrow">JOIN US</span>
+        <h2 style="margin-top:14px;">地平線の先を、<br>一緒に描くエンジニアを募集しています。</h2>
+      </div>
+      <div class="roles">
+        <div class="role-row"><span>Site Reliability Engineer</span><span>東京 / リモート可</span></div>
+        <div class="role-row"><span>バックエンドエンジニア</span><span>東京 / リモート可</span></div>
+        <div class="role-row"><span>セールスエンジニア</span><span>東京</span></div>
+        <div class="role-row"><span>プロダクトデザイナー</span><span>リモート可</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M2 19L6 9L10 14L14 5L18 12L22 19H2Z" fill="var(--accent)" opacity="0.9"/></svg>
+          Skyline Technologies
+        </div>
+        <p>分散システムの可観測性と自動化を提供する、クラウド基盤プラットフォーム企業です。</p>
+      </div>
+      <div>
+        <h4>会社概要</h4>
+        <p class="row">商号：スカイライン・テクノロジーズ株式会社</p>
+        <p class="row">設立：2018年4月</p>
+        <p class="row">所在地：東京都渋谷区恵比寿1-2-3<br>スカイラインタワー10F</p>
+      </div>
+      <div>
+        <h4>お問い合わせ</h4>
+        <div class="copy-row">
+          <span id="emailText">contact@skyline-technologies.jp</span>
+          <button class="copy-btn" data-copy="contact@skyline-technologies.jp">コピー</button>
+        </div>
+        <div class="copy-row">
+          <span id="careerText">careers@skyline-technologies.jp</span>
+          <button class="copy-btn" data-copy="careers@skyline-technologies.jp">コピー</button>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Skyline Technologies, Inc.</span>
+      <span>※本サイトは架空の企業を紹介するデモページです。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var svg = document.getElementById('skylineSvg');
+    var buildingsG = document.getElementById('buildings');
+    var windowsG = document.getElementById('windows');
+    var ns = 'http://www.w3.org/2000/svg';
+
+    var defs = document.createElementNS(ns, 'defs');
+    defs.innerHTML = '<linearGradient id="bfill" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="#0d1526"/>' +
+      '<stop offset="100%" stop-color="#070c17"/>' +
+      '</linearGradient>';
+    svg.insertBefore(defs, svg.firstChild);
+
+    var groundY = 380;
+    var buildings = [
+      {x:560, w:64, h:130},
+      {x:624, w:46, h:210},
+      {x:670, w:84, h:150},
+      {x:754, w:56, h:270},
+      {x:810, w:96, h:110},
+      {x:906, w:74, h:330},
+      {x:980, w:112, h:250},
+      {x:1092, w:64, h:360},
+      {x:1156, w:86, h:170},
+      {x:1242, w:104, h:230},
+      {x:1346, w:70, h:290},
+      {x:1416, w:24, h:150}
+    ];
+
+    var seed = 42;
+    function rand(){
+      seed = (seed * 1103515245 + 12345) % 2147483648;
+      return seed / 2147483648;
+    }
+
+    buildings.forEach(function(b, bi){
+      var y = groundY - b.h;
+      var rect = document.createElementNS(ns, 'rect');
+      rect.setAttribute('x', b.x);
+      rect.setAttribute('y', y);
+      rect.setAttribute('width', b.w);
+      rect.setAttribute('height', b.h + 20);
+      rect.setAttribute('fill', 'url(#bfill)');
+      rect.setAttribute('stroke', 'rgba(255,255,255,0.03)');
+      buildingsG.appendChild(rect);
+
+      var cols = Math.max(2, Math.floor((b.w - 12) / 14));
+      var rows = Math.max(3, Math.floor((b.h - 20) / 22));
+      var padX = (b.w - (cols * 9 - 3)) / 2;
+      for(var r = 0; r < rows; r++){
+        for(var c = 0; c < cols; c++){
+          if(rand() < 0.32) continue;
+          var wx = b.x + padX + c * 9;
+          var wy = y + 14 + r * 22;
+          var win = document.createElementNS(ns, 'rect');
+          win.setAttribute('x', wx);
+          win.setAttribute('y', wy);
+          win.setAttribute('width', 6);
+          win.setAttribute('height', 9);
+          win.setAttribute('rx', 1);
+          var warm = rand() > 0.4;
+          win.setAttribute('fill', warm ? '#ffb066' : '#6fe9d0');
+          var wmin = 0.2 + rand() * 0.25;
+          var wmax = 0.75 + rand() * 0.25;
+          win.style.setProperty('--wmin', wmin);
+          win.style.setProperty('--wmax', wmax);
+          win.style.animation = 'twinkle ' + (2.5 + rand() * 4).toFixed(1) + 's ease-in-out ' + (rand() * 3).toFixed(1) + 's infinite';
+          windowsG.appendChild(win);
+        }
+      }
+    });
+
+    document.querySelectorAll('.copy-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var text = btn.getAttribute('data-copy');
+        var done = function(){
+          var orig = btn.textContent;
+          btn.textContent = 'コピーしました';
+          setTimeout(function(){ btn.textContent = orig; }, 1600);
+        };
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(done).catch(function(){
+            selectFallback(btn);
+            done();
+          });
+        } else {
+          selectFallback(btn);
+          done();
+        }
+      });
+    });
+    function selectFallback(btn){
+      var span = btn.previousElementSibling;
+      if(!span) return;
+      var range = document.createRange();
+      range.selectNodeContents(span);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+  })();
+</script>
